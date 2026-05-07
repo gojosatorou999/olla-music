@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olla Music | Your Offline Music Sanctuary</title>
+    <meta name="description" content="Olla Music - Store and play your favorite tracks with full offline capabilities.">
+    <meta name="theme-color" content="#09090b">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">
+                    <i class="fa-solid fa-compact-disc fa-spin-pulse" style="--fa-animation-duration: 4s;"></i>
+                </div>
+                <h1>Olla Music</h1>
+            </div>
+
+            <div class="upload-section">
+                <input type="file" id="file-upload" accept="audio/*" multiple hidden>
+                <button id="upload-btn" class="btn-primary">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Add Music
+                </button>
+                <p class="upload-hint">Stores securely on your device</p>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="active"><i class="fa-solid fa-music"></i> My Library</a>
+                <a href="#"><i class="fa-solid fa-heart"></i> Favorites</a>
+                <a href="#"><i class="fa-solid fa-record-vinyl"></i> Playlists</a>
+            </nav>
+            
+            <div class="storage-info">
+                <div class="storage-bar">
+                    <div class="storage-fill" id="storage-fill"></div>
+                </div>
+                <p><span id="song-count">0</span> tracks stored</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search your offline library...">
+                </div>
+                <div class="user-profile">
+                    <div class="offline-badge" id="offline-badge">
+                        <i class="fa-solid fa-wifi"></i> Online
+                    </div>
+                </div>
+            </header>
+
+            <section class="library-section">
+                <div class="section-header">
+                    <h2>Your Library</h2>
+                    <div class="view-controls">
+                        <button class="active"><i class="fa-solid fa-list"></i></button>
+                        <button><i class="fa-solid fa-border-all"></i></button>
+                    </div>
+                </div>
+
+                <div class="song-list" id="song-list">
+                    <!-- Songs will be injected here via JS -->
+                    <div class="empty-state">
+                        <i class="fa-solid fa-headphones-simple"></i>
+                        <h3>Your library is empty</h3>
+                        <p>Click 'Add Music' to start building your offline collection.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Music Player Interface -->
+    <div class="player-container">
+        <div class="now-playing">
+            <div class="track-artwork" id="current-artwork">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <div class="track-info">
+                <h3 id="current-title">Not Playing</h3>
+                <p id="current-artist">--</p>
+            </div>
+        </div>
+
+        <div class="player-controls-container">
+            <div class="controls">
+                <button class="control-btn" id="btn-shuffle"><i class="fa-solid fa-shuffle"></i></button>
+                <button class="control-btn" id="btn-prev"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="control-btn play-btn" id="btn-play"><i class="fa-solid fa-play"></i></button>
+                <button class="control-btn" id="btn-next"><i class="fa-solid fa-forward-step"></i></button>
+                <button class="control-btn" id="btn-repeat"><i class="fa-solid fa-repeat"></i></button>
+            </div>
+            <div class="progress-container">
+                <span id="time-current">0:00</span>
+                <div class="progress-bar-wrapper" id="progress-area">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <span id="time-total">0:00</span>
+            </div>
+        </div>
+
+        <div class="player-actions">
+            <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+            <div class="volume-slider-wrapper">
+                <div class="volume-slider" id="volume-slider">
+                    <div class="volume-level" id="volume-level" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="main-audio"></audio>
+
+    <script src="app.js"></script>
+</body>
+</html>
